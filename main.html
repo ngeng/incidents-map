@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="author" content="Naixin Geng">
+	<title>Incidents map</title>
+
+	<!-- Import data -->
+	<script src="data.json"></script>
+
+    <!-- Import libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="offcanvas.css">
+    <script src="offcanvas.js"></script>
+    <script src="map.js"></script>
+
+    <style>
+        .map-container {
+            height: 70vh;
+        }
+        .scrollable-menu {
+            height: auto;
+            max-height: 70vh;
+            overflow-x: hidden;
+        }
+        #listBtn {
+            margin: auto auto 0px auto; /* the bottom margin is the negative value of the footer's height */
+        }
+    </style>
+</head>
+
+<body>
+	<!-- Page Content -->
+	<div class="container">
+		<!-- Headline -->
+        <h1 class="page-header">
+            Incidents Map
+            <!--<small>subtitle</small>-->
+            <button type="button" class="btn btn-success btn-sm pull-right visible-xs" data-toggle="offcanvas" id="listBtn">
+                List <span class="badge" id="listBtnBadge">7</span>
+            </button>
+        </h1>
+
+		<!-- Main content -->
+		<div class="row row-offcanvas row-offcanvas-left">
+
+            <div class="col-xs-12 col-sm-4 sidebar-offcanvas" id="sidebar">
+                <div class="list-group scrollable-menu" id="sideList">
+                    <a href="javascript:clickListHandler()" class="list-group-item list-group-item-success"><b>List</b></a>
+                </div>
+            </div><!--/.sidebar-offcanvas-->
+
+            <div class="col-xs-12 col-sm-8">
+                <div class="map-container" id="map"></div>
+			</div><!--/.col-xs-12.col-sm-9-->
+
+		</div><!--/row-->
+
+		<!-- Footer -->
+		<footer><hr><p>Copyright &copy; Naixin Geng</p></footer>
+    </div>
+    <!-- /.container -->
+    <!--<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_SKCH_bMhh-e4H31nZLClQTvILpWUspY&callback=initMap" async defer></script>
+</body>
+</html>
+
