@@ -2,8 +2,13 @@
 var map;
 var markers = [];
 var infowindow;
-var bounds;
 var countMarkers = 0;
+
+$(document).ready(function () {
+    $('[data-toggle="offcanvas"]').click(function () {
+        $('.row-offcanvas-left').toggleClass('active')
+    });
+});
 
 function clickListHandler(id, lat, long) {
     // shift map to center
@@ -18,11 +23,10 @@ function clickListHandler(id, lat, long) {
 
     // add animation + change marker color
     markers.forEach(function(marker) {
-        if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-        }
         if (marker.id == id) {
             marker.setAnimation(google.maps.Animation.BOUNCE);
+        } else {
+            marker.setAnimation(null);
         }
     })
 
@@ -64,6 +68,7 @@ function generateMarkers(map) {
 		var contentString = generateInfoWinText(item);
 		marker.addListener('click', (function(marker) {
 			return function() {
+                if(!!marker.getAnimation()) {marker.setAnimation(null);}
 				infowindow.setContent(contentString);
 				infowindow.open(map, marker);
 			}
