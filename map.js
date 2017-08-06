@@ -19,11 +19,12 @@ function clickListHandler(id, lat, long) {
     // center map to this marker
     var latLng = new google.maps.LatLng(lat, long);
     map.setCenter(latLng);
-    map.setZoom(12);
+    if(map.getZoom()<12) {map.setZoom(12);}
 
     // add animation + change marker color
     markers.forEach(function(marker) {
         if (marker.id == id) {
+            infowindow.close();
             marker.setAnimation(google.maps.Animation.BOUNCE);
         } else {
             marker.setAnimation(null);
@@ -64,11 +65,11 @@ function generateMarkers(map) {
         markers.push(marker);
 
 		// init info window of this marker
-        infowindow = new google.maps.InfoWindow();
+        infowindow = new google.maps.InfoWindow({maxWidth: 200});
 		var contentString = generateInfoWinText(item);
 		marker.addListener('click', (function(marker) {
 			return function() {
-                if(!!marker.getAnimation()) {marker.setAnimation(null);}
+                marker.setAnimation(null);
 				infowindow.setContent(contentString);
 				infowindow.open(map, marker);
 			}
